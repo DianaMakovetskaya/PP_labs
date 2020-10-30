@@ -1,5 +1,6 @@
 package com.company;
 
+
 import java.util.Scanner;
 /**
  * Task 1
@@ -11,8 +12,9 @@ public class Main {
      * @param args - arguments from terminal
      */
     public static void main(String[] args) {
-        // write your code here
+
         int start, end,size;
+
 
         System.out.println("Hello world");
 
