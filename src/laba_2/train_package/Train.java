@@ -7,68 +7,84 @@ import java.util.Date;
 
 public class Train {
     private String destination;
-    private int train_num;
-    private String departure_time;
-    private int  general_places_num,compartment_places_num,plackart_places_num,luks_places_num;
+    private int trainNum;
+    private String departureTime;
+    private int  generalPlacesNum,compartmentPlacesNum,plackartPlacesNum,luksPlacesNum;
+    public static ArrayList<Train> trains;
 
+    /**
+     * constructor without parameters
+     */
     public Train(){
 
     }
-    public Train(String destination,int train_num, String departure_time,int general_places_num,int compartment_places_num,int plackart_places_num,int luks_places_num){
+
+    /**
+     * constructor with parameters
+     */
+    public Train(String destination,int trainNum, String departureTime,int generalPlacesNum,int compartmentPlacesNum,int plackartPlacesNum,int luksPlacesNum){
         this.destination=destination;
-        this.train_num=train_num;
-        this.departure_time=departure_time;
-        this.general_places_num=general_places_num;
-        this.compartment_places_num=compartment_places_num;
-        this.plackart_places_num=plackart_places_num;
-        this.luks_places_num=luks_places_num;
+        this.trainNum=trainNum;
+        this.departureTime=departureTime;
+        this.generalPlacesNum=generalPlacesNum;
+        this.compartmentPlacesNum=compartmentPlacesNum;
+        this.plackartPlacesNum=plackartPlacesNum;
+        this.luksPlacesNum=luksPlacesNum;
     }
 
+    /**
+     *Setters
+     */
     public void SetDestination(String destination){
         this.destination=destination;
     };
-    public void SetDeparture_time(String departure_time){
-        this.departure_time=departure_time;
+    public void SetDepartureTime(String departureTime){
+        this.departureTime=departureTime;
     };
-    public void SetGenaral_places(int general_places_num){
-        this.general_places_num=general_places_num;
+    public void SetGenaralPlaces(int generalPlacesNum){
+        this.generalPlacesNum=generalPlacesNum;
     };
-    public void SetTrain_num(int train_num){
-        this.train_num=train_num;
+    public void SetTrainNum(int train_num){
+        this.trainNum=train_num;
     };
-    public void SetLuks_places(int luks_places_num){
-        this.luks_places_num=luks_places_num;
+    public void SetLuksPlaces(int luksPlacesNum){
+        this.luksPlacesNum=luksPlacesNum;
     };
-    public void SetCompartment_places(int compartment_places_num){
-        this.compartment_places_num=compartment_places_num;
+    public void SetCompartmentPlaces(int compartmentPlacesNum){
+        this.compartmentPlacesNum=compartmentPlacesNum;
     };
-    public void SetPlackart_places(int plackart_places_num){
-        this.plackart_places_num=plackart_places_num;
+    public void SetPlackartPlaces(int plackartPlacesNum){
+        this.plackartPlacesNum=plackartPlacesNum;
     };
-
-    public int GetGenaral_places(){
-        return  general_places_num;
+    /**
+     *Getters
+     */
+    public int GetGenaralPlaces(){
+        return  generalPlacesNum;
     };
-    public int GetTrain_num(){
-        return train_num;
+    public int GetTrainNum(){
+        return trainNum;
     };
-    public int GetLuks_places(){
-        return luks_places_num;
+    public int GetLuksPlaces(){
+        return luksPlacesNum;
     };
-    public int GetCompartment_places(){
-        return compartment_places_num;
+    public int GetCompartmentPlaces(){
+        return compartmentPlacesNum;
     };
-    public int GetPlackart_places(){
-        return plackart_places_num;
+    public int GetPlackartPlaces(){
+        return plackartPlacesNum;
     };
     public String GetDestination(){
         return destination;
     };
-    public String GetDeparture_time(){
-        return departure_time;
+    public String GetDepartureTime(){
+        return departureTime;
     }
-
-    public static void printElements(ArrayList<Train> trains, String destination) {
+/**
+ *list of trains going to a given destination
+ * @param destination- specified destination
+ * */
+    public static void destinationSort(String destination) {
         System.out.println("|-------------------------------------------------------------------------------------|");
         System.out.println("| Train num    | Destination| Departure | General,  | Plackart | Compartment | Luks   |");
         System.out.println("|              |            | time      | places    | places   | places      | places |");
@@ -76,20 +92,25 @@ public class Train {
 
         for (Train temporaryObj : trains) {
             if (temporaryObj.destination.equals(destination)) {
-                System.out.printf("| %-12d | %-10s | %-9s | %-9d | %-8d | %-11d | %-6d |\n", temporaryObj.train_num,
+                System.out.printf("| %-12d | %-10s | %-9s | %-9d | %-8d | %-11d | %-6d |\n", temporaryObj.trainNum,
                         temporaryObj.destination,
-                        temporaryObj.departure_time,
-                        temporaryObj.general_places_num,
-                        temporaryObj.plackart_places_num,
-                        temporaryObj.compartment_places_num,
-                        temporaryObj.luks_places_num);
+                        temporaryObj.departureTime,
+                        temporaryObj.generalPlacesNum,
+                        temporaryObj.plackartPlacesNum,
+                        temporaryObj.compartmentPlacesNum,
+                        temporaryObj.luksPlacesNum);
             }
         }
 
         System.out.println("----------------------------------------------------------------------------------------");
     }
 
-    public static void printElements(ArrayList<Train> trains, String destination,String departure_time) {
+    /**
+     *list of trains that go to a given destination and depart after a given hour
+     * @param destination- specified destination
+     * @param departureTime- specified departure time
+     * */
+    public static void destinationAndTimeSort(String destination,String departureTime) {
         System.out.println("|-------------------------------------------------------------------------------------|");
         System.out.println("| Train num    | Destination| Departure | General,  | Plackart | Compartment | Luks   |");
         System.out.println("|              |            | time      | places    | places   | places      | places |");
@@ -100,18 +121,18 @@ public class Train {
 
                 try {
                     DateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                    Date format1 = sdf.parse(departure_time);
-                    Date format2 = sdf.parse(temporaryObj.departure_time);
+                    Date format1 = sdf.parse(departureTime);
+                    Date format2 = sdf.parse(temporaryObj.departureTime);
                     sdf.format(format1);
                     sdf.format(format2);
                     if(format2.after(format1)){
-                        System.out.printf("| %-12d | %-10s | %-9s | %-9d | %-8d | %-11d | %-6d |\n", temporaryObj.train_num,
+                        System.out.printf("| %-12d | %-10s | %-9s | %-9d | %-8d | %-11d | %-6d |\n", temporaryObj.trainNum,
                                 temporaryObj.destination,
-                                temporaryObj.departure_time,
-                                temporaryObj.general_places_num,
-                                temporaryObj.plackart_places_num,
-                                temporaryObj.compartment_places_num,
-                                temporaryObj.luks_places_num);
+                                temporaryObj.departureTime,
+                                temporaryObj.generalPlacesNum,
+                                temporaryObj.plackartPlacesNum,
+                                temporaryObj.compartmentPlacesNum,
+                                temporaryObj.luksPlacesNum);
                     }
                 }catch (Exception e){
 
@@ -123,22 +144,25 @@ public class Train {
 
         System.out.println("----------------------------------------------------------------------------------------");
     }
-
-    public static void printElements(ArrayList<Train> trains, String destination,int general_places_num) {
+/**
+ * a list of trains that depart for a given destination and have common seats.
+ * @param destination-specified destination
+ * @param generalPlacesNum- specified number of general places*/
+    public static void destinationAndPlacesSort(String destination,int generalPlacesNum) {
         System.out.println("|-------------------------------------------------------------------------------------|");
         System.out.println("| Train num    | Destination| Departure | General,  | Plackart | Compartment | Luks   |");
         System.out.println("|              |            | time      | places    | places   | places      | places |");
         System.out.println("|-------------------------------------------------------------------------------------|");
 
         for (Train temporaryObj : trains) {
-            if (temporaryObj.destination.equals(destination)&&temporaryObj.general_places_num==general_places_num) {
-                System.out.printf("| %-12d | %-10s | %-9s | %-9d | %-8d | %-11d | %-6d |\n", temporaryObj.train_num,
+            if (temporaryObj.destination.equals(destination)&&temporaryObj.generalPlacesNum==generalPlacesNum) {
+                System.out.printf("| %-12d | %-10s | %-9s | %-9d | %-8d | %-11d | %-6d |\n", temporaryObj.trainNum,
                         temporaryObj.destination,
-                        temporaryObj.departure_time,
-                        temporaryObj.general_places_num,
-                        temporaryObj.plackart_places_num,
-                        temporaryObj.compartment_places_num,
-                        temporaryObj.luks_places_num);
+                        temporaryObj.departureTime,
+                        temporaryObj.generalPlacesNum,
+                        temporaryObj.plackartPlacesNum,
+                        temporaryObj.compartmentPlacesNum,
+                        temporaryObj.luksPlacesNum);
             }
         }
 

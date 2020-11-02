@@ -11,7 +11,7 @@ public class ThreeArg {
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Too few arguments!");
+            //System.out.println("Too few arguments!");
         }
     }
 }

@@ -12,12 +12,15 @@ public class Main {
 
     public static void main(String[] args) {
         Create_Array();
-        Train.printElements(trains,"lviv");
-        Train.printElements(trains,"lviv",15);
-        Train.printElements(trains,"lviv","12:30:15");
+        Train.trains=trains;
+        Train.destinationSort("lviv");
+        Train.destinationAndPlacesSort("lviv",15);
+        Train.destinationAndTimeSort("lviv","12:30:15");
 
     }
-
+/**
+ * with this method you can fill in the information
+ * */
     public static void Create_Array(){
         Scanner in=new Scanner(System.in);
         String line;
@@ -28,34 +31,34 @@ public class Main {
 
                 System.out.println("Train 1:");
                 System.out.print("Enter train_num:");
-                obj.SetTrain_num(Integer.parseInt(in.nextLine()));
+                obj.SetTrainNum(Integer.parseInt(in.nextLine()));
 
                 System.out.print("Enter destination:");
                 obj.SetDestination(in.nextLine());
 
                 System.out.print("Enter departure time:");
-                obj.SetDeparture_time(in.nextLine());
+                obj.SetDepartureTime(in.nextLine());
 
                 System.out.print("Enter general places:");
 
-                obj.SetGenaral_places(Integer.parseInt(in.nextLine()));
+                obj.SetGenaralPlaces(Integer.parseInt(in.nextLine()));
 
 
                 System.out.print("Enter plackart places:");
 
 
-                obj.SetPlackart_places(Integer.parseInt(in.nextLine()));
+                obj.SetPlackartPlaces(Integer.parseInt(in.nextLine()));
 
 
                 System.out.print("Enter compartment places:");
 
-                obj.SetCompartment_places(Integer.parseInt(in.nextLine()));
+                obj.SetCompartmentPlaces(Integer.parseInt(in.nextLine()));
 
 
                 System.out.print("Enter luks places:");
 
 
-                obj.SetLuks_places(Integer.parseInt(in.nextLine()));
+                obj.SetLuksPlaces(Integer.parseInt(in.nextLine()));
 
                 trains.add(obj);
             }
