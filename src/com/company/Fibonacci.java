@@ -34,7 +34,7 @@ public  class Fibonacci {
             }
 
             System.out.println();
-            BiggestNum(fibonacciArr);
+            Percentage(fibonacciArr);
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
@@ -43,13 +43,12 @@ public  class Fibonacci {
     }
 
     /**
-     * The help method for Fibonacci method. The method finds the biggest even and odd fibonacci num.
+     * The help method for Fibonacci method. The method finds the percentage of even and odd fibonacci num.
      * @param fibonacciArr - the array of fibonacci nums.
      */
-    private void BiggestNum(int[] fibonacciArr)
+    private void Percentage(int[] fibonacciArr)
     {
-        boolean bigOdd = false, bigEven = false;
-        int maxEven = 0, maxOdd = 0;
+
         int countEven = 0;
 
         for (int i = fibonacciArr.length - 1; i!=-1; i--)
